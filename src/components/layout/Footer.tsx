@@ -1,37 +1,37 @@
 import Link from "next/link";
-import { Linkedin, Twitter, Instagram, GraduationCap, BookOpen, PenLine } from "lucide-react";
-import { socialLinks } from "@/data/profile";
 
-const iconMap: Record<string, React.ReactNode> = {
-  linkedin: <Linkedin className="h-5 w-5" />,
-  twitter: <Twitter className="h-5 w-5" />,
-  instagram: <Instagram className="h-5 w-5" />,
-  "google-scholar": <GraduationCap className="h-5 w-5" />,
-  researchgate: <BookOpen className="h-5 w-5" />,
-  medium: <PenLine className="h-5 w-5" />,
-};
+const footerLinks = [
+  { label: "LinkedIn", url: "https://linkedin.com/in/oguzhanaygoren" },
+  { label: "X", url: "https://x.com/oguzhan" },
+  { label: "Instagram", url: "https://instagram.com/oaygoren" },
+  { label: "YouTube", url: "https://youtube.com/c/OguzhanAygoren" },
+  { label: "Google Scholar", url: "https://scholar.google.com.tr/citations?user=AbBGR8YAAAAJ" },
+];
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row sm:px-6">
-        <p className="text-sm text-foreground/50">
-          &copy; 2026 Prof. Dr. O&#287;uzhan Ayg&ouml;ren. All rights reserved.
-        </p>
-
-        <div className="flex items-center gap-4">
-          {socialLinks.map((link) => (
-            <Link
-              key={link.platform}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={link.platform}
-              className="text-foreground/40 transition-colors hover:text-accent"
-            >
-              {iconMap[link.icon] ?? null}
-            </Link>
-          ))}
+    <footer className="mt-auto bg-[#0D0D0D] text-[#EEEEEE]">
+      <div className="mx-auto max-w-5xl px-6 py-8">
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <Link
+            href="mailto:oguzhan@berkeley.edu"
+            className="text-sm text-[#EEEEEE]/80 transition-colors hover:text-[#C8A96E]"
+          >
+            oguzhan@berkeley.edu
+          </Link>
+          <div className="flex items-center gap-4">
+            {footerLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[#EEEEEE]/70 transition-colors hover:text-[#C8A96E]"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

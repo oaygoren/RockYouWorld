@@ -1,96 +1,127 @@
-import { researchAreas, publications } from "@/data/research";
-import { socialLinks } from "@/data/profile";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { createMetadata } from "@/lib/metadata";
-import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Separator } from "@/components/ui/separator";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export const metadata = createMetadata(
   "Research",
-  "Publications and research in marketing, entrepreneurship, corporate innovation, and digital transformation."
+  "Research on startup behavior, open innovation, AI for business innovation, design and creativity, and corporate venturing."
 );
 
-const googleScholarUrl =
-  socialLinks.find((l) => l.platform === "Google Scholar")?.url ??
-  "https://scholar.google.com/citations?user=AbBGR8YAAAAJ";
+const researchAreas = [
+  {
+    title: "Startup Behavior and Startup Orientation",
+    description:
+      "Investigating how new ventures create value, what behavioral patterns distinguish successful startups, and how large organizations can structurally adopt startup-like characteristics. Original framework: Startup Orientation.",
+  },
+  {
+    title: "Open Innovation and Corporate Venturing",
+    description:
+      "How established companies engage external knowledge sources — universities, startups, and VC ecosystems — to drive innovation. Research on venture client models, corporate accelerators, and the structural conditions that make open innovation work.",
+  },
+  {
+    title: "AI for Business Innovation",
+    description:
+      "The organizational and strategic implications of artificial intelligence for how companies innovate, compete, and build new ventures. Current focus area at the UC Berkeley Institute for Business Innovation.",
+  },
+  {
+    title: "Design, Creativity, and New Venture Creation",
+    description:
+      "The role of design thinking and creative processes in how new ventures are conceived and built. Research informed by affiliation with Stanford's d.school and the Center for Design Research.",
+  },
+  {
+    title: "Digital Marketing and Consumer Behavior",
+    description:
+      "Choice behavior, consumer decision-making, digital marketing strategy, and the dynamics of online communities and platforms.",
+  },
+];
 
 export default function ResearchPage() {
   return (
-    <>
-      {/* Hero Banner */}
-      <section className="bg-muted py-20">
-        <SectionHeading
-          title="Research"
-          subtitle="Exploring the intersection of marketing, entrepreneurship, and innovation"
-        />
-      </section>
-
-      {/* Research Areas Section */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <SectionHeading title="Research Areas" />
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {researchAreas.map((area, i) => (
-            <FadeIn key={area.title} delay={i * 100}>
-              <Card>
-                <h3 className="text-lg font-semibold text-accent">
-                  {area.title}
-                </h3>
-                <p className="mt-2 text-foreground/70">{area.description}</p>
-              </Card>
-            </FadeIn>
-          ))}
-        </div>
-      </section>
-
-      {/* Publications Section */}
-      <section className="mx-auto max-w-4xl px-6 py-16">
-        <SectionHeading title="Selected Publications" />
-        <div className="space-y-6">
-          {publications.map((pub, i) => (
-            <FadeIn key={pub.title} delay={i * 100}>
-              <Card>
-                <h3 className="text-lg font-semibold text-foreground">
-                  {pub.title}
-                </h3>
-                <p className="mt-1 text-sm text-foreground/60">
-                  {pub.authors}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  <span className="rounded-full bg-muted px-3 py-1 text-sm text-foreground/70">
-                    {pub.venue}
-                  </span>
-                  <span className="rounded-full bg-muted px-3 py-1 text-sm text-foreground/70">
-                    {pub.year}
-                  </span>
-                </div>
-                {pub.summary && (
-                  <p className="mt-3 text-foreground/70">{pub.summary}</p>
-                )}
-                {pub.link && (
-                  <a
-                    href={pub.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-block text-sm font-medium text-accent hover:underline"
-                  >
-                    Read Paper
-                  </a>
-                )}
-              </Card>
-            </FadeIn>
-          ))}
-        </div>
-      </section>
-
-      {/* Google Scholar Link */}
-      <section className="mx-auto max-w-4xl px-6 pb-20 text-center">
+    <div className="mx-auto max-w-3xl px-6">
+      <section className="pb-12 pt-24">
         <FadeIn>
-          <Button variant="outline" size="lg" href={googleScholarUrl}>
-            View All on Google Scholar
-          </Button>
+          <h1 className="font-serif text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            Research
+          </h1>
+          <p className="mt-4 text-muted-foreground leading-[1.7]">
+            Aygoren&apos;s research examines how organizations — startups and established enterprises — create, adopt, and scale innovation. His work is grounded in empirical study and informed by direct participation in the ventures, ecosystems, and institutions he studies.
+          </p>
         </FadeIn>
       </section>
-    </>
+
+      {/* Research Areas */}
+      <section className="pb-16">
+        <div className="space-y-10">
+          {researchAreas.map((area, i) => (
+            <FadeIn key={area.title} delay={i * 80}>
+              <div>
+                <h2 className="font-serif text-xl font-semibold text-foreground">
+                  {area.title}
+                </h2>
+                <p className="mt-3 text-muted-foreground leading-[1.7]">
+                  {area.description}
+                </p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* Working With Corporates */}
+      <section className="py-16">
+        <FadeIn>
+          <h2 className="mb-4 text-xs font-medium tracking-[0.12em] text-accent uppercase">
+            Working With Corporates
+          </h2>
+          <p className="text-muted-foreground leading-[1.7]">
+            The UC Berkeley Institute for Business Innovation works with global corporations on research partnerships, executive programs, and ecosystem access. Corporate affiliate programs and joint research initiatives are available.
+          </p>
+          <div className="mt-6 space-y-2 text-sm">
+            <p>
+              <span className="text-muted-foreground">Google Scholar: </span>
+              <Link
+                href="https://scholar.google.com.tr/citations?user=AbBGR8YAAAAJ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 transition-colors"
+              >
+                scholar.google.com.tr/citations?user=AbBGR8YAAAAJ
+              </Link>
+            </p>
+            <p>
+              <span className="text-muted-foreground">Research inquiries: </span>
+              <Link
+                href="mailto:oguzhan@berkeley.edu"
+                className="text-accent hover:text-accent/80 transition-colors"
+              >
+                oguzhan@berkeley.edu
+              </Link>
+            </p>
+          </div>
+        </FadeIn>
+      </section>
+
+      <Separator />
+
+      {/* CTA */}
+      <section className="py-16">
+        <FadeIn>
+          <p className="text-muted-foreground leading-relaxed">
+            Organizations interested in a research collaboration, corporate affiliate program, or joint initiative are encouraged to reach out. A brief description of the context is helpful.
+          </p>
+          <Link
+            href="/contact?subject=Research+Partnership"
+            className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+          >
+            <ArrowRight className="size-3.5" />
+            Explore a research partnership
+          </Link>
+        </FadeIn>
+      </section>
+    </div>
   );
 }

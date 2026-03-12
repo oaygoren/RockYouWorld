@@ -4,7 +4,7 @@ export function JsonLd() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Prof. Dr. Oguzhan Aygoren",
+    name: profile.name,
     jobTitle: profile.title,
     description: profile.tagline,
     url: "https://oguzhanaygoren.com",

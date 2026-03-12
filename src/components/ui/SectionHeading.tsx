@@ -4,17 +4,24 @@ interface SectionHeadingProps {
   title: string;
   subtitle?: string;
   className?: string;
+  align?: "left" | "center";
 }
 
-export function SectionHeading({ title, subtitle, className }: SectionHeadingProps) {
+export function SectionHeading({ title, subtitle, className, align = "center" }: SectionHeadingProps) {
   return (
-    <div className={cn("mb-12 text-center", className)}>
-      <h2 className="text-3xl font-bold text-foreground">
+    <div className={cn(align === "center" && "text-center", className)}>
+      <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
         {title}
-        <span className="mt-2 block h-1 w-12 mx-auto rounded-full bg-accent" />
       </h2>
       {subtitle && (
-        <p className="mt-4 text-foreground/60 max-w-2xl mx-auto">{subtitle}</p>
+        <p
+          className={cn(
+            "mt-3 text-muted-foreground leading-relaxed",
+            align === "center" && "mx-auto max-w-2xl"
+          )}
+        >
+          {subtitle}
+        </p>
       )}
     </div>
   );

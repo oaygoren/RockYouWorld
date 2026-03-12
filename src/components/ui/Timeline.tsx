@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 
 interface TimelineItem {
   year: string;
@@ -14,20 +15,17 @@ interface TimelineProps {
 
 export function Timeline({ items, className }: TimelineProps) {
   return (
-    <div className={cn("relative border-l-2 border-accent/30 pl-8 space-y-10", className)}>
+    <div className={cn("relative space-y-8 pl-8", className)}>
+      <div className="absolute left-3 top-2 bottom-2 w-px bg-border" />
       {items.map((item, index) => (
         <div key={index} className="relative">
-          {/* Dot on the line */}
-          <span className="absolute -left-[41px] top-1 h-3 w-3 rounded-full bg-accent ring-4 ring-background" />
-
-          {/* Year badge */}
-          <span className="inline-block rounded-full bg-accent/10 px-3 py-0.5 text-xs font-semibold text-accent mb-2">
+          <span className="absolute -left-[21px] top-1.5 size-2.5 rounded-full bg-accent ring-4 ring-background" />
+          <Badge variant="secondary" className="mb-2 text-xs font-medium">
             {item.year}
-          </span>
-
-          <h3 className="text-lg font-bold text-foreground">{item.title}</h3>
+          </Badge>
+          <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
           <p className="text-sm font-medium text-accent">{item.organization}</p>
-          <p className="mt-1 text-sm text-foreground/60 leading-relaxed">
+          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
             {item.description}
           </p>
         </div>

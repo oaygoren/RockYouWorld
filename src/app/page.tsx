@@ -1,128 +1,98 @@
-import Image from "next/image";
-import { profile } from "@/data/profile";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { profile, affiliations, recentItems } from "@/data/profile";
 import { createMetadata } from "@/lib/metadata";
-import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Separator } from "@/components/ui/separator";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export const metadata = createMetadata(
   "Home",
-  "Innovation strategist, researcher & educator bridging academia, startups, and corporate innovation."
+  "Scholar, entrepreneur, and advisor working at the intersection of innovation, venture capital, and enterprise strategy."
 );
 
-const highlights = [
-  {
-    icon: "🎓",
-    title: "Berkeley Director",
-    description: "Institute for Business Innovation, UC Berkeley Haas",
-  },
-  {
-    icon: "💡",
-    title: "Stanford Fellow",
-    description: "Faculty Innovation Fellow",
-  },
-  {
-    icon: "🎙️",
-    title: "200+ Episodes",
-    description: "BloombergHT Girisimcilik Dunyasi",
-  },
-  {
-    icon: "🚀",
-    title: "Venture Partner",
-    description: "212 VC & Otwo Ventures",
-  },
-];
-
 export default function Home() {
-  const bioSentences = profile.bio.split(". ").slice(0, 3).join(". ") + ".";
-
   return (
-    <>
-      {/* Hero Section */}
-      <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-6 text-center">
+    <div className="mx-auto max-w-3xl px-6">
+      {/* Hero */}
+      <section className="pb-16 pt-28">
         <FadeIn>
-          <span className="mb-6 inline-block rounded-full bg-muted px-4 py-1.5 text-sm text-foreground/60">
-            Welcome
-          </span>
-        </FadeIn>
-
-        <FadeIn delay={100}>
-          <h1 className="text-4xl font-bold text-foreground md:text-6xl">
+          <h1 className="font-serif text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
             {profile.name}
           </h1>
         </FadeIn>
 
-        <FadeIn delay={200}>
-          <p className="mt-4 text-xl text-foreground/70 md:text-2xl">
-            {profile.title}
+        <FadeIn delay={100}>
+          <p className="mt-4 text-lg italic text-muted-foreground leading-relaxed">
+            {profile.title} working at the intersection of innovation, venture capital, and enterprise strategy.
           </p>
-        </FadeIn>
-
-        <FadeIn delay={300}>
-          <p className="mt-2 text-lg text-foreground/50">{profile.tagline}</p>
-        </FadeIn>
-
-        <FadeIn delay={400}>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Button variant="primary" size="lg" href="/research">
-              Explore My Research
-            </Button>
-            <Button variant="outline" size="lg" href="/contact">
-              Get in Touch
-            </Button>
-          </div>
         </FadeIn>
       </section>
 
-      {/* Highlights Section */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <SectionHeading title="What I Do" />
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {highlights.map((item, i) => (
-            <FadeIn key={item.title} delay={i * 100}>
-              <Card className="text-center">
-                <div className="mb-3 text-3xl">{item.icon}</div>
-                <h3 className="font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-1 text-sm text-foreground/60">
-                  {item.description}
-                </p>
-              </Card>
+      {/* Bio */}
+      <section className="pb-16">
+        <div className="space-y-6">
+          {profile.bio.map((paragraph, i) => (
+            <FadeIn key={i} delay={i * 80}>
+              <p className="text-muted-foreground leading-[1.7]">{paragraph}</p>
             </FadeIn>
           ))}
         </div>
       </section>
 
-      {/* Brief About Section */}
-      <section className="mx-auto max-w-4xl px-6 py-20">
-        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-          <FadeIn>
-            <div>
-              <h2 className="mb-4 text-3xl font-bold text-foreground">
-                About Me
-              </h2>
-              <p className="text-lg leading-relaxed text-foreground/80">
-                {bioSentences}
-              </p>
-              <div className="mt-6">
-                <Button variant="outline" href="/about">
-                  Read More About Me
-                </Button>
-              </div>
-            </div>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <div className="relative aspect-square overflow-hidden rounded-2xl bg-muted">
-              <Image
-                src="/images/headshot-otwo.jpg"
-                alt={profile.name}
-                fill
-                className="object-cover"
-              />
-            </div>
-          </FadeIn>
-        </div>
+      {/* Affiliation Logos */}
+      <section className="pb-16">
+        <FadeIn>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 opacity-65">
+            {affiliations.map((name) => (
+              <span key={name} className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
+                {name}
+              </span>
+            ))}
+          </div>
+        </FadeIn>
       </section>
-    </>
+
+      <Separator />
+
+      {/* Recent */}
+      <section className="py-16">
+        <FadeIn>
+          <h2 className="mb-8 text-xs font-medium tracking-[0.12em] text-accent uppercase">
+            Recent
+          </h2>
+          <div className="space-y-4">
+            {recentItems.map((item, i) => (
+              <FadeIn key={i} delay={i * 60}>
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="text-sm text-muted-foreground">
+                    {item.text}
+                    {item.location && <> &middot; {item.location}</>}
+                  </p>
+                  <span className="shrink-0 text-xs text-muted-foreground/60">{item.year}</span>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </FadeIn>
+      </section>
+
+      <Separator />
+
+      {/* CTA */}
+      <section className="py-16">
+        <FadeIn>
+          <p className="text-muted-foreground leading-relaxed">
+            If you are looking to work together — on advisory, research, speaking, or executive education — the Services page is a good place to start.
+          </p>
+          <Link
+            href="/services"
+            className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+          >
+            <ArrowRight className="size-3.5" />
+            View Services
+          </Link>
+        </FadeIn>
+      </section>
+    </div>
   );
 }

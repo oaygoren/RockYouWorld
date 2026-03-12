@@ -1,26 +1,33 @@
 import { Role, Education, SocialLink } from "@/types";
 
 export const profile = {
-  name: "Prof. Dr. Oguzhan Aygoren",
-  title: "Innovation Strategist, Researcher & Educator",
-  tagline: "Bridging academia, startups, and corporate innovation",
-  email: "contact@oguzhanaygoren.com",
-  bio: `Prof. Dr. Oguzhan Aygoren is an innovation strategist, researcher, and educator whose career uniquely bridges the worlds of academia, startups, and corporate innovation. His journey began with a degree in Electrical Engineering from Middle East Technical University (METU), where he developed the analytical rigor that would underpin his multidisciplinary career.
-
-He went on to earn his MBA through a joint program at Koc University and London Business School, gaining a global perspective on business strategy and management. After graduating, he joined Procter & Gamble as an innovation leader, where he honed his skills in new product development and go-to-market strategy at one of the world's most admired consumer goods companies.
-
-Driven by the entrepreneurial spirit, Oguzhan left the corporate world to co-found three startups. Most notably, he co-founded Kindo, a technology venture that was successfully acquired by MyHeritage in 2008. These hands-on experiences in building, scaling, and exiting ventures gave him a practitioner's understanding of the startup ecosystem that few academics possess.
-
-Seeking to deepen his scholarly contributions, he pursued a PhD in Marketing at Bogazici University, one of Turkey's most prestigious institutions. Upon completing his doctorate in 2013, he joined the Bogazici faculty as a Professor of Marketing and Entrepreneurship. There, he founded the Bright Center for Entrepreneurship, establishing it as a leading hub for entrepreneurial education and ecosystem development in Turkey.
-
-His work as host and producer of "Girisimcilik Dunyasi" (Entrepreneurship World) on BloombergHT brought the stories of nearly 200 entrepreneurs and innovators to a national audience over approximately 200 episodes, making him one of Turkey's most recognized voices in the entrepreneurship space.
-
-As a visiting scholar at UC Berkeley in 2014 and visiting researcher at Stanford University in 2016, Oguzhan deepened his ties with Silicon Valley's innovation ecosystem. These relationships evolved into permanent roles: he currently serves as Director at the UC Berkeley Haas Institute for Business Innovation and as a Faculty Innovation Fellow at Stanford University.
-
-In the investment world, Oguzhan is a Venture Partner at 212 VC, one of Turkey's leading venture capital firms, and co-founder of Otwo Ventures, through which he backs early-stage companies at the intersection of technology and impact.
-
-He also founded The X Way, an innovation consulting practice that helps corporations build sustainable innovation capabilities, and previously co-founded Dotshub. His advisory contributions extend to organizations such as Endeavor and the Global Entrepreneurship Network (GEN), where he supports high-impact entrepreneurs worldwide.`,
+  name: "Oguzhan Aygoren",
+  title: "Scholar, entrepreneur, and advisor",
+  tagline: "Working at the intersection of innovation, venture capital, and enterprise strategy",
+  email: "oguzhan@berkeley.edu",
+  bio: [
+    "Oguzhan Aygoren is Director of the Institute for Business Innovation at UC Berkeley's Haas School of Business, Visiting Professor at NYU Stern, and a Faculty Innovation Fellow at Stanford's d.school. His work focuses on how organizations — startups and large enterprises alike — create, adopt, and scale innovation.",
+    "Before academia, he worked at Procter & Gamble as an innovation leader, served as Founding Country Manager of Kindo (backed by Index Ventures, with Reid Hoffman on the board, acquired within a year), and co-founded Cepkod — the first commercial use of QR codes in Turkey, in partnership with Turkcell and Microsoft. He is currently co-founder of Dotshub and a venture partner at 212 VC and Startupfon.",
+    "He has delivered executive education and advisory work for organizations including Şişecam, Pegasus, İş Bankası, Pfizer, SOCAR, Toyota, L'Oreal, Türk Telekom, Garanti BBVA, Johnson & Johnson, Visa, Google, Meta, and the Abu Dhabi Department of Culture and Tourism. He hosts Valley Meetups on CNBC-e and previously hosted approximately 200 episodes on Bloomberg HT.",
+  ],
 };
+
+export const affiliations = [
+  "UC Berkeley Haas",
+  "Stanford d.school",
+  "NYU Stern",
+  "CNBC-e",
+  "Bloomberg HT",
+  "212 VC",
+];
+
+export const recentItems = [
+  { text: "Keynote — AI Impact Hackathon, U.S. Department of State", location: "Washington D.C.", year: "2026" },
+  { text: "Keynote — OzU AI Platform", location: "Istanbul", year: "2026" },
+  { text: "Keynote — SF AI for Good Summit", location: "San Francisco", year: "2025" },
+  { text: "Keynote — Glass Conference", location: "Venice", year: "2025" },
+  { text: "Valley Meetups, CNBC-e — weekly", location: "", year: "ongoing" },
+];
 
 export const currentRoles: Role[] = [
   {
@@ -45,14 +52,14 @@ export const currentRoles: Role[] = [
 export const education: Education[] = [
   {
     degree: "B.Sc.",
-    field: "Electrical Engineering",
+    field: "Electrical and Electronics Engineering",
     institution: "Middle East Technical University (METU)",
     year: "2002",
   },
   {
     degree: "MBA",
     field: "Business Administration",
-    institution: "Koc University & London Business School",
+    institution: "Koç University (Full Scholarship) and London Business School",
     year: "2004",
   },
   {
@@ -80,18 +87,13 @@ export const socialLinks: SocialLink[] = [
     icon: "instagram",
   },
   {
+    platform: "YouTube",
+    url: "https://youtube.com/c/OguzhanAygoren",
+    icon: "youtube",
+  },
+  {
     platform: "Google Scholar",
-    url: "https://scholar.google.com/citations?user=AbBGR8YAAAAJ",
+    url: "https://scholar.google.com.tr/citations?user=AbBGR8YAAAAJ",
     icon: "google-scholar",
-  },
-  {
-    platform: "ResearchGate",
-    url: "https://researchgate.net/profile/Oguzhan-Aygoren",
-    icon: "researchgate",
-  },
-  {
-    platform: "Medium",
-    url: "https://oguzhan.medium.com",
-    icon: "medium",
   },
 ];

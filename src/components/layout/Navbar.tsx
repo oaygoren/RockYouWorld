@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navLinks } from "@/data/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Button } from "@/components/ui/button";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -19,7 +20,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
@@ -27,89 +27,77 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border transition-shadow duration-300",
-        scrolled && "shadow-sm"
+        "sticky top-0 z-50 w-full border-b border-transparent bg-background/60 backdrop-blur-xl transition-all duration-300",
+        scrolled && "border-border shadow-[0_1px_3px_0_rgb(0_0_0/0.04)]"
       )}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        {/* Logo */}
+      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="text-xl font-bold tracking-tight text-foreground hover:text-accent transition-colors"
+          className="text-lg font-semibold tracking-tight text-foreground transition-colors hover:text-accent"
         >
-          OA
+          Oguzhan Aygoren
         </Link>
 
-        {/* Desktop nav links */}
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  "relative px-3 py-1.5 text-sm transition-colors",
                   pathname === link.href
-                    ? "text-accent"
-                    : "text-foreground/70 hover:text-foreground"
+                    ? "font-medium text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {link.label}
+                {pathname === link.href && (
+                  <span className="absolute inset-x-3 -bottom-[17px] h-px bg-foreground" />
+                )}
               </Link>
             </li>
           ))}
         </ul>
 
-        {/* Right side: theme toggle + mobile hamburger */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           <ThemeToggle />
-          <button
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="inline-flex items-center justify-center rounded-md p-2 text-foreground/70 hover:text-foreground md:hidden"
+            className="lg:hidden"
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </Button>
         </div>
       </nav>
 
-      {/* Mobile slide-over menu */}
-      <div
-        className={cn(
-          "fixed inset-0 top-[57px] z-40 transform transition-transform duration-300 ease-in-out md:hidden",
-          mobileOpen ? "translate-x-0" : "translate-x-full"
-        )}
-      >
-        {/* Backdrop */}
-        <div
-          className={cn(
-            "absolute inset-0 bg-background/60 backdrop-blur-sm transition-opacity duration-300",
-            mobileOpen ? "opacity-100" : "opacity-0"
-          )}
-          onClick={() => setMobileOpen(false)}
-        />
-
-        {/* Panel */}
-        <div className="absolute right-0 top-0 h-full w-64 bg-background border-l border-border p-6 shadow-xl">
-          <ul className="flex flex-col gap-2">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={cn(
-                    "block rounded-md px-3 py-2 text-base font-medium transition-colors",
-                    pathname === link.href
-                      ? "text-accent bg-accent/10"
-                      : "text-foreground/70 hover:text-foreground hover:bg-muted"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+      {mobileOpen && (
+        <div className="border-t border-border bg-background lg:hidden">
+          <div className="mx-auto max-w-5xl px-6 py-4">
+            <ul className="flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={cn(
+                      "block rounded-lg px-3 py-2.5 text-sm transition-colors",
+                      pathname === link.href
+                        ? "bg-secondary font-medium text-foreground"
+                        : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }

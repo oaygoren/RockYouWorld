@@ -1,33 +1,38 @@
 import type { Metadata } from "next";
-import { Inter, Geist } from "next/font/google";
+import { DM_Sans, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Prof. Dr. Oğuzhan Aygören",
-    template: "%s | Prof. Dr. Oğuzhan Aygören",
+    default: "Oguzhan Aygoren",
+    template: "%s | Oguzhan Aygoren",
   },
   description:
-    "Innovation strategist, researcher & educator. Director at UC Berkeley Haas Institute for Business Innovation. Faculty Innovation Fellow at Stanford University.",
+    "Scholar, entrepreneur, and advisor working at the intersection of innovation, venture capital, and enterprise strategy.",
   metadataBase: new URL("https://oguzhanaygoren.com"),
   openGraph: {
-    title: "Prof. Dr. Oğuzhan Aygören",
+    title: "Oguzhan Aygoren",
     description:
-      "Innovation strategist, researcher & educator. Bridging academia, startups, and corporate innovation.",
+      "Scholar, entrepreneur, and advisor working at the intersection of innovation, venture capital, and enterprise strategy.",
     url: "https://oguzhanaygoren.com",
-    siteName: "Prof. Dr. Oğuzhan Aygören",
+    siteName: "Oguzhan Aygoren",
     locale: "en_US",
     type: "website",
     images: [
@@ -35,15 +40,15 @@ export const metadata: Metadata = {
         url: "/images/og-default.jpg",
         width: 1200,
         height: 630,
-        alt: "Prof. Dr. Oğuzhan Aygören",
+        alt: "Oguzhan Aygoren",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Prof. Dr. Oğuzhan Aygören",
+    title: "Oguzhan Aygoren",
     description:
-      "Innovation strategist, researcher & educator. Bridging academia, startups, and corporate innovation.",
+      "Scholar, entrepreneur, and advisor working at the intersection of innovation, venture capital, and enterprise strategy.",
     creator: "@oguzhan",
   },
   icons: {
@@ -58,8 +63,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
-      <body className={`${inter.variable} antialiased`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${dmSans.variable} ${playfairDisplay.variable}`}
+    >
+      <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="flex min-h-screen flex-col">
             <Navbar />

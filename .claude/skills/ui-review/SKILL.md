@@ -1,10 +1,8 @@
 ---
 name: ui-review
-description: Review UI code for design quality, accessibility, performance, and best practices. Use when reviewing components, pages, or pull requests for frontend quality.
+description: Review UI code for design quality, accessibility, performance, shadcn/ui consistency, and best practices. Use when reviewing components, pages, or PRs.
 user-invocable: true
-context: fork
-agent: Explore
-argument-hint: [file-or-component-to-review]
+argument-hint: "file-or-component-to-review"
 ---
 
 # UI Code Review Skill
@@ -12,6 +10,14 @@ argument-hint: [file-or-component-to-review]
 Review the following for frontend quality: $ARGUMENTS
 
 ## Review Checklist
+
+### shadcn/ui Consistency
+- [ ] Using shadcn components where available instead of custom HTML
+- [ ] Correct use of `cva` variants (not fighting the component API)
+- [ ] Using `cn()` for class merging (not string concatenation)
+- [ ] Proper use of shadcn color tokens: `primary`, `secondary`, `muted`, `accent`, `destructive`
+- [ ] Using the radius scale (`rounded-sm/md/lg/xl`) instead of arbitrary values
+- [ ] Composing shadcn components correctly (Card > CardHeader > CardTitle, etc.)
 
 ### Design Quality
 - [ ] Consistent use of design tokens (no hardcoded colors, spacing)
@@ -26,10 +32,10 @@ Review the following for frontend quality: $ARGUMENTS
 - [ ] Proper heading hierarchy (h1 > h2 > h3, no skipping)
 - [ ] Images have meaningful alt text
 - [ ] Interactive elements are keyboard accessible
-- [ ] Focus indicators visible
+- [ ] Focus indicators visible (shadcn `focus-visible:ring` pattern)
 - [ ] Color contrast meets WCAG AA (4.5:1 text, 3:1 large text)
 - [ ] ARIA attributes used where needed
-- [ ] Motion respects `prefers-reduced-motion`
+- [ ] Base UI primitives providing built-in a11y for complex widgets
 
 ### Performance
 - [ ] Images use `next/image` with proper sizing
@@ -37,13 +43,14 @@ Review the following for frontend quality: $ARGUMENTS
 - [ ] Heavy components dynamically imported
 - [ ] No layout shifts (explicit dimensions on media)
 - [ ] Efficient re-renders (no unnecessary state)
+- [ ] Specific lucide-react imports (not barrel imports)
 
 ### Code Quality
 - [ ] TypeScript types are precise (no `any`)
 - [ ] Props interface follows `{Name}Props` convention
 - [ ] `cn()` used for conditional classes
 - [ ] Named exports (not default)
-- [ ] Component is appropriately sized (< 150 lines ideally)
+- [ ] Component is appropriately sized (< 150 lines)
 - [ ] No duplicated logic that should be extracted
 
 ### Responsive Design
